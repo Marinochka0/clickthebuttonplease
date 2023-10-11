@@ -18,7 +18,7 @@ def click_button():
     s.send(byteclicks)
 
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s = socket.socket()
 s.connect(("192.168.134.23", 9999))
 
 global clicks
