@@ -4,14 +4,14 @@ import PIL
 from tkinter import *
 from PIL import ImageTk, Image
 
-ws = Tk()
+root = Tk()
 
-w_shift = ws.winfo_screenwidth() / 3 - 120
+w_shift = root.winfo_screenwidth() / 3 - 120
 h_shift = 50
 
-ws.title('Нажмите на кнопку!')
-ws.geometry('700x700+%d+%d' % (w_shift, h_shift))
-ws.resizable (False, False)
+root.title('Нажмите на кнопку!')
+root.geometry('700x700+%d+%d' % (w_shift, h_shift))
+root.resizable (False, False)
 
 images = ["C:/Users/Admin/Desktop/pics/1.png",
           "C:/Users/Admin/Desktop/pics/2.jpeg",
@@ -19,22 +19,19 @@ images = ["C:/Users/Admin/Desktop/pics/1.png",
           "C:/Users/Admin/Desktop/pics/4.jpeg",
           "C:/Users/Admin/Desktop/pics/5.jpeg",
           "C:/Users/Admin/Desktop/pics/6.jpeg"]
-im = Image.open(images[0])
-ph = ImageTk.PhotoImage(im)
 
-label = Label(ws, width = 700, height = 700, image=ph)
-label.image = ph
+ph = ImageTk.PhotoImage(Image.open(images[0]))
+
+label = Label(root, width = 700, height = 700, image = ph)
 label.pack()
 
 def update(h):
     global im, ph
     ph = ImageTk.PhotoImage(Image.open(images[h % len(images)]))
-    label.configure(image=ph)
-    # label.pack()
-
+    label.configure(image = ph)
 
 def func():
-    t = threading.Thread(target=sock)
+    t = threading.Thread(target = sock)
     t.start()
 
 
@@ -57,4 +54,4 @@ def sock():
         conn.close()
 
 func()
-ws.mainloop()
+root.mainloop()
